@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Box, Button } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 
@@ -16,6 +16,7 @@ const NotFoundContainer = styled(Box)(({ theme }) => ({
 }));
 
 const ReturnHomeButton = styled(Button)(({ theme }) => ({
+  marginTop: theme.spacing(2),
   backgroundColor: '#00bfa6',
   color: '#fff',
   '&:hover': {
@@ -26,17 +27,15 @@ const ReturnHomeButton = styled(Button)(({ theme }) => ({
 const NotFound = () => {
   return (
     <NotFoundContainer>
-      <Container maxWidth="sm">
-        <Typography variant="h2" gutterBottom>
-          404
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          Page Not Found
-        </Typography>
-        <ReturnHomeButton component={Link} to="/" variant="contained">
-          Go to Home
-        </ReturnHomeButton>
-      </Container>
+      <Typography variant="h2" gutterBottom>
+        404
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        Page Not Found
+      </Typography>
+      <ReturnHomeButton component={Link} to="/" variant="contained">
+        Go to Home
+      </ReturnHomeButton>
     </NotFoundContainer>
   );
 };
