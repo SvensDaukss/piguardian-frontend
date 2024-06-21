@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { AppBar, Toolbar, Button, Container, IconButton, Menu, MenuItem, Box } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../assets/images/PiGuardian-logo-banner.png';
@@ -10,7 +10,7 @@ const Logo = styled('img')(({ theme }) => ({
   marginRight: theme.spacing(0),
 }));
 
-const LoginButton = styled(Button)(({ theme }) => ({
+const LogoutButton = styled(Button)(({ theme }) => ({
   backgroundColor: '#00bfa6',
   color: '#fff',
   '&:hover': {
@@ -18,13 +18,11 @@ const LoginButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const Navbar = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
-  const navigate = useNavigate();
+const DashboardNavbar = () => {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -44,12 +42,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    setIsLoggedIn(false);
-    navigate('/login');
-  };
-
-  const handleLoginRedirect = () => {
-    window.location.href = 'https://dashboard.piguardian.org/login';
+    window.location.href = 'https://piguardian.org';
   };
 
   return (
@@ -72,13 +65,7 @@ const Navbar = () => {
                 <MenuIcon sx={{ fontSize: 40 }} />
               </IconButton>
               <Box sx={{ flexGrow: 1 }} />
-              {isLoggedIn ? (
-                <Button onClick={handleLogout} style={{ backgroundColor: '#00bfa6', color: '#fff' }}>
-                  Log out
-                </Button>
-              ) : (
-                <LoginButton onClick={handleLoginRedirect}>Log in</LoginButton>
-              )}
+              <LogoutButton onClick={handleLogout}>Log out</LogoutButton>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -94,25 +81,17 @@ const Navbar = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
               >
-                <MenuItem onClick={handleMenuClose} component={Link} to="/about">About</MenuItem>
-                <MenuItem onClick={handleMenuClose} component={Link} to="/services">Services</MenuItem>
-                <MenuItem onClick={handleMenuClose} component={Link} to="/contact">Contact</MenuItem>
+                <MenuItem onClick={handleMenuClose} component={Link} to="/">Home</MenuItem>
+                <MenuItem onClick={handleMenuClose} component={Link} to="/settings">Settings</MenuItem>
               </Menu>
             </>
           ) : (
             <div style={{ flexGrow: 1, display: 'flex', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex' }}>
-                <Button color="inherit" component={Link} to="/about">About</Button>
-                <Button color="inherit" component={Link} to="/services">Services</Button>
-                <Button color="inherit" component={Link} to="/contact">Contact</Button>
+                <Button color="inherit" component={Link} to="/">Home</Button>
+                <Button color="inherit" component={Link} to="/settings">Settings</Button>
               </div>
-              {isLoggedIn ? (
-                <Button onClick={handleLogout} style={{ backgroundColor: '#00bfa6', color: '#fff' }}>
-                  Log out
-                </Button>
-              ) : (
-                <LoginButton onClick={handleLoginRedirect}>Log in</LoginButton>
-              )}
+              <LogoutButton onClick={handleLogout}>Log out</LogoutButton>
             </div>
           )}
         </Toolbar>
@@ -121,4 +100,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default DashboardNavbar;
