@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: '/api', // Set the base URL for all API requests
+  baseURL: '/api', // This should match the Nginx configuration
 });
 
 instance.interceptors.request.use((config) => {

@@ -50,6 +50,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log('Submitting Login:', { email, password });
       const response = await axios.post('/auth/login', { email, password });
       const { token, uuid } = response.data;
       localStorage.setItem('token', token);
@@ -57,7 +58,7 @@ const Login = () => {
       window.location.href = `https://dashboard.piguardian.org/${uuid}`;
     } catch (error) {
       console.error('Login failed:', error.response ? error.response.data : error.message);
-      // Optionally, display an error message to the user
+      alert(`Login failed: ${error.response ? error.response.data.error : error.message}`);
     }
   };
 

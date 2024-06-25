@@ -1,7 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { createUser, findUserByEmail } = require('../models/userModel');
-require('dotenv').config();
 
 const signup = async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
@@ -19,7 +18,7 @@ const signup = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: true,
-      domain: '.piguardian.org', // Set cookie for all subdomains
+      domain: '.piguardian.org',
     });
     res.status(201).json({ token, uuid: user.uuid, user });
   } catch (err) {
@@ -53,7 +52,7 @@ const login = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: true,
-      domain: '.piguardian.org', // Set cookie for all subdomains
+      domain: '.piguardian.org',
     });
     res.json({ token, uuid: user.uuid, user });
   } catch (err) {
@@ -65,7 +64,7 @@ const logout = (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
     secure: true,
-    domain: '.piguardian.org', // Clear cookie for all subdomains
+    domain: '.piguardian.org',
   });
   res.json({ message: 'Logged out successfully' });
 };

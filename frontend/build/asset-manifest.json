@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.js": "/static/js/main.96ad4ab6.js",
+    "static/media/home-image.png": "/static/media/home-image.f040ee8c357936457ffa.png",
+    "static/media/about-image.png": "/static/media/about-image.f7af629295d7c4d80819.png",
+    "static/media/contact-image.png": "/static/media/contact-image.b6b36bd6bf7961fbb7f2.png",
+    "static/media/services-image.png": "/static/media/services-image.22bb8871266defc8c852.png",
+    "static/media/PiGuardian-logo-banner.png": "/static/media/PiGuardian-logo-banner.53a6f40a984364e799e2.png",
+    "index.html": "/index.html",
+    "main.96ad4ab6.js.map": "/static/js/main.96ad4ab6.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.96ad4ab6.js"
+  ]
+}
