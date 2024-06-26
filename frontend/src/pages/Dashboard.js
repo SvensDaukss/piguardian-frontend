@@ -16,6 +16,16 @@ const Header = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(2),
 }));
 
+const LoadingScreen = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#000511',
+  color: '#fff',
+  minHeight: '100vh',
+  padding: theme.spacing(4),
+}));
+
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -34,7 +44,13 @@ const Dashboard = () => {
     fetchUser();
   }, [navigate]);
 
-  if (!user) return <div>Loading...</div>;
+  if (!user) {
+    return (
+      <LoadingScreen>
+        <Typography variant="h4">Loading...</Typography>
+      </LoadingScreen>
+    );
+  }
 
   return (
     <Root>
