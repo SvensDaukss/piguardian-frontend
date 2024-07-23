@@ -10,13 +10,13 @@ const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.use(express.static(path.join(__dirname, '../frontend/.next')));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/.next/server/pages', 'index.html'));
 });
 
 app.listen(PORT, () => {
@@ -37,3 +37,4 @@ pool.connect((err) => {
     console.log('Connected to PostgreSQL');
   }
 });
+

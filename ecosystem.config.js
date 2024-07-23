@@ -17,7 +17,7 @@ module.exports = {
     {
       name: 'piguardian-frontend',
       script: 'npx',
-      args: 'serve -s build -l 3000',
+      args: 'next start -p 3000',
       cwd: './frontend',
       env: {
         NODE_ENV: 'production'
